@@ -25,11 +25,11 @@ import  re, datetime, cleanAndAppend, bs4 #, TKinter as tk
 #import datetime
 
 myFileStack = []
-myInputBatResult = 'data\output2-08-14-2014.xml'#'..\debugData.xml'  #'..\OutputEnphase.xml'
+myInputBatResult = 'data\output2-10-07-2014.xml'#'..\debugData.xml'  #'..\OutputEnphase.xml'
 myWorkingFile = 'data\myWorkingFile.xml'
-myStartDate = '2014-07-26' #'2014-07-26'
-myEndDate = '2014-08-20'  #str(datetime.date.today())[0:10] #'2014-07-31'
-myUsername = 'All'
+myStartDate = '2014-08-08' #'2014-07-26'
+myEndDate = '2014-10-08'  #str(datetime.date.today())[0:10] #'2014-07-31'
+myUsername =  'All' #['Daniel Bennett', 'NTTCS Admin']     #'All'
 myPackageName = 'data\packageTest.xml'
 myGetServiceMaxFields = 0
 
