@@ -27,8 +27,8 @@ import  re, datetime, cleanAndAppend, bs4 #, TKinter as tk
 myFileStack = []
 myInputBatResult = 'data\output2-10-07-2014.xml'#'..\debugData.xml'  #'..\OutputEnphase.xml'
 myWorkingFile = 'data\myWorkingFile.xml'
-myStartDate = '2014-08-08' #'2014-07-26'
-myEndDate = '2014-10-08'  #str(datetime.date.today())[0:10] #'2014-07-31'
+myStartDate = '2014-08-08T13:10:22.000Z' #'2014-07-26'
+myEndDate = '2014-10-08T00:00:00.000Z'  
 myUsername =  'All' #['Daniel Bennett', 'NTTCS Admin']     #'All'
 myPackageName = 'data\packageTest.xml'
 myGetServiceMaxFields = 0

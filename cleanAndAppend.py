@@ -121,10 +121,15 @@ def filterByDateAndName(xmlFile, startDate, endDate, userName, outputPackage, ve
             output = output + '\t<members>' + child.fullName.string + '</members> <!-- ' + str(child.lastModifiedByName.text) + '>   <' + str(child.lastModifiedDate.text) + '-->\n'
             myType = child.type
         '''
+        #Testing non-stripped version 
         myDateTime = datetime.datetime.strptime(str(child.lastModifiedDate.text), "%Y-%m-%dT%H:%M:%S.%fZ")
-        '''********Removed for List Test DB 10/02/14 -- 
-        if ( ( (str(child.type.string) == 'CustomField' or  str(child.type.string) == 'RecordType') and getServiceMaxFields==1  and child.fullName.string.startswith('SVMXC__') ) or ((myDateTime > datetime.datetime.strptime(startDate, "%Y-%m-%d") and myDateTime < datetime.datetime.strptime(endDate, "%Y-%m-%d") and ( userName == 'all' or userName == 'All' or str(child.lastModifiedByName.text) == userName )))):'''
-        if ( ( (str(child.type.string) == 'CustomField' or  str(child.type.string) == 'RecordType') and getServiceMaxFields==1  and child.fullName.string.startswith('SVMXC__') ) or ((myDateTime > datetime.datetime.strptime(startDate, "%Y-%m-%d") and myDateTime < datetime.datetime.strptime(endDate, "%Y-%m-%d") and ( userName == 'all' or userName == 'All' or str(child.lastModifiedByName.text) in userName )))):
+        #myDateTime = str(child.lastModifiedDate.text)
+        
+        
+        '''
+        #Removed simple date only format to support granular filtering of lastmodifiedDate at date/time level DB 10/14/14
+        if ( ( (str(child.type.string) == 'CustomField' or  str(child.type.string) == 'RecordType') and getServiceMaxFields==1  and child.fullName.string.startswith('SVMXC__') ) or ((myDateTime > datetime.datetime.strptime(startDate, "%Y-%m-%d") and myDateTime < datetime.datetime.strptime(endDate, "%Y-%m-%d") and ( userName == 'all' or userName == 'All' or str(child.lastModifiedByName.text) in userName )))):'''
+        if ( ( (str(child.type.string) == 'CustomField' or  str(child.type.string) == 'RecordType') and getServiceMaxFields==1  and child.fullName.string.startswith('SVMXC__') ) or ((myDateTime > datetime.datetime.strptime(startDate, "%Y-%m-%dT%H:%M:%S.%fZ") and myDateTime < datetime.datetime.strptime(endDate, "%Y-%m-%dT%H:%M:%S.%fZ") and ( userName == 'all' or userName == 'All' or str(child.lastModifiedByName.text) in userName )))):
         #if ( ( (str(child.type.string) == 'CustomField' or  str(child.type.string) == 'RecordType') and getServiceMaxFields==1  and child.fullName.string.startswith('SVMXC__') ) or ((datetime.datetime.strptime(str(child.lastModifiedDate.text), "%Y-%m-%dT%H:%M:%S.%fZ") > datetime.datetime.strptime(startDate, "%Y-%m-%d") and datetime.datetime.strptime(str(child.lastModifiedDate.text), "%Y-%m-%dT%H:%M:%S.%fZ") < datetime.datetime.strptime(endDate, "%Y-%m-%d") and ( userName == 'all' or userName == 'All' or str(child.lastModifiedByName.text) == userName )))):
             #output = output + '\t<members>' + child.fullName.string + '</members> <!-- ' + str(child.lastModifiedByName.text) + '>   <' + str(child.lastModifiedDate.text) + '-->\n'
             #print(child.fullName)
@@ -134,8 +139,6 @@ def filterByDateAndName(xmlFile, startDate, endDate, userName, outputPackage, ve
                 myType = child.type
                 #output = output + '\n' + nameString + '\n</types>\n\n<types>\n\n\n\n'
             
-            
-                  
                 
             if (myType != '' and child.type != myType):
                 nameString = '\t<name>' + myType.string + '</name>'
